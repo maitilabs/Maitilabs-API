@@ -21,7 +21,15 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  
+  // img:
+  //   {
+  //     type: String,
+  //     required: true,
+  //   },
+    // img: {
+    //   data: Buffer,
+    //   contentType: String,
+    // },
 });
 // blogSchema.index({ title: 'text', content: 'text' });
 

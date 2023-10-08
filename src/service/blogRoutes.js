@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 
 const router = express.Router();
+// router.set('view engine', 'html');
+
 
 // Retrieve a list of blogs with titles and excerpts
 router.get('/blogs', async (req, res) => {
@@ -63,6 +65,55 @@ router.get('/search', async (req, res) => {
     }
   });
   
+// For image upload
+// var multer = require('multer');
+import multer from 'multer';
+ 
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/')
+    },
+    filename: (req, file, cb) => {
+        // cb(null, new Date().toISOString() + file.originalname)
+        cb(null, file.originalname)
+    }
+});
+ 
+var upload = multer({ storage: storage });
+
+
+// Add a new blog with image
+// router.post("/blogs", upload.single("img"), async (req, res) => {
+//   // req.file can be used to access all file properties
+//   try {
+//     //check if the request has an image or not
+//     if (!req.file) {
+//       res.json({
+//         success: false,
+//         message: "You must provide at least 1 file"
+//       });
+//     } else {
+//       let newBlog = {
+//         title: req.body.title,
+//         content: req.body.content,
+//         author: req.body.author,
+//         language: req.body.language,
+//         img: {
+//           data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+//           contentType: req.file.mimetype
+//         }
+        
+//         // fileName: req.body.fileName
+//       };
+//       const uploadObject = new Blog(newBlog);
+//       // saving the object into the database
+//       const uploadProcess = await uploadObject.save();
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 //Retrieve html blogForm to accept user blog and upload
 router.get('/addBlog', (req, res) => {
@@ -78,7 +129,7 @@ router.get('/addBlog', (req, res) => {
 
 //******************************************************** */
 
-router.post('/blogs', (req, res) => {
+router.post('/blogs', upload.single('img') , (req, res) => {
   // const { title, content, author, language, date } = req.body;
 
     // const newBlog = new Blog({ title, content, author, language, date });
@@ -89,7 +140,11 @@ router.post('/blogs', (req, res) => {
       content: req.body.content,
       author: req.body.author,
       language: req.body.language,
-
+      // img: req.file.path
+      // img: {
+      //     data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      //     contentType: 'image/png'
+      // }
   });
   Blog.create(newBlog)
   .then ((err, item) => {
