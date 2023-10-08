@@ -1,0 +1,65 @@
+
+  .bg-image {
+    background-image:url(./background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 340px;
+    width: 100%;
+  }
+  
+  .centered-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    color: #ffffff; /* Adjust text color based on your background image */
+    text-align: center;
+  }
+      /* Custom card width */
+      .custom-card1 {
+    width: 80%; /* Adjust the width as needed */
+    border-color: transparent;
+    margin-bottom: 20px;
+    margin-left: 150px;
+  }
+  @media (max-width: 860px) {
+.custom-card1 {
+  width: 90%; /* Adjust the width for smaller screens */
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+  .custom-card2
+  {
+      width: 80%; /* Adjust the width as needed */
+    border-color: transparent;
+    margin-bottom: 20px;
+    margin-left: 15px;
+  }
+  @media (max-width: 860px) {
+.custom-card2 {
+  width: 90%; /* Adjust the width for smaller screens */
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+.heading1
+{
+    line-height: 85px; font-size: 85px; margin-top: 100px;
+}
+@media (max-width: 480px) {
+    .heading1 {
+        font-size: 55px;
+    }
+}
+
+.heading2
+{
+    line-height: 33px; font-size: 27px; font-weight: 400; font-family: 'lora',serif;
+}
+@media (max-width: 480px) {
+    .heading2 {
+        font-size: 20px;
+    }
+}
