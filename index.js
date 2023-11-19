@@ -5,11 +5,11 @@ import userRouter from './Routers/userRouter.js';
 import { config } from 'dotenv';
 
 config();
-// https://maitilabs-ui.vercel.app
+// http://localhost:3000
 const app= express();
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://maitilabs-ui.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: 'Authorization,Content-Type', // Include 'Authorization'
   credentials: true,
