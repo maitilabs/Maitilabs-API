@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { signUp, verifyOtp ,login,getBlogs,addBlog} from'../Controllers/userController.js';
+import { signUp, verifyOtp ,login,addBlog,showBlogs,blogDetail} from'../Controllers/userController.js';
 import verifyAuthentication from '../Middleware/verifyjwt.js';
 
 router.route('/api/signup')
@@ -14,10 +14,13 @@ router.route('/api/login')
 
 router.route('/showBlogs')
     .all(verifyAuthentication)
-    .get(getBlogs);
+    .get(showBlogs);
 
 router.route('/addBlog')
     .all(verifyAuthentication)
-    .post(addBlog);    
+    .post(addBlog); 
+router.route('/blog/:id')
+      .get(blogDetail);  
+ 
 
 export default router;
