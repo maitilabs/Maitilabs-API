@@ -144,21 +144,28 @@ export const login=async(req,res)=>{
 
 
 //====================== get user =============================================================//
-export const getBlogs= async(req, res)=>{
+export const showBlogs= async(req, res)=>{
     try{
-        const allBlog=await Blog.find();
-        if(allBlog){
-        console.log(allBlog);
-        res.status(200).send(allBlog)
-    }
-        else
-        console.log("error");
+    //     const allBlog=await Blog.find();
+    //     if(allBlog){
+    //     console.log(allBlog);
+    //     res.status(200).send(allBlog)
+    // }
+    //     else
+    //     console.log("error");
 
-    }
-    catch(err){
-    return res.status(400).send({error:"Authentication failed"})
-}
-}
+          const blogs = await Blog.find()
+          console.log('Retrieved data:', blogs);
+          return res.status(200).json({blogs});
+        } 
+        catch (err) {
+          console.error('Error retrieving data:', err);
+          return res.status(500).json({ error: 'Error retrieving data' }); 
+         }
+      };
+  
+
+
 
 //=========================== add blog ========================================================//
 
@@ -179,4 +186,17 @@ export const addBlog = async (req, res) => {
     } catch (err) {
         return res.status(400).send({ error: "Authentication failed" });
     }
+}
+//=========================== blog detail =========================================================//
+
+
+export const blogDetail= async (req, res) => {
+        try {
+           
+          const blog = await Blog.findById(req.params.id);
+          res.json(blog);
+          console.log(blog);
+        } catch (error) {
+          res.status(500).json({ error: 'Internal Server Error' });
+        }
 }

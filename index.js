@@ -5,7 +5,7 @@ import userRouter from './Routers/userRouter.js';
 import { config } from 'dotenv';
 
 config();
-
+// http://localhost:3000
 const app= express();
 
 app.use(cors({
