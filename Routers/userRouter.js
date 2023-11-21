@@ -13,12 +13,12 @@ router.route('/api/login')
     .post(login);
 
 router.route('/showBlogs')
-    .all(verifyAuthentication)
     .get(showBlogs);
 
 router.route('/addBlog')
     .all(verifyAuthentication)
     .post(addBlog); 
+    
 router.route('/blog/:id')
       .get(blogDetail);  
  
